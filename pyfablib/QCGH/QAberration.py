@@ -13,10 +13,20 @@ class QAberration(CGH):
         self.correction = 0
 
        
-    @pyqtSlot(object)
-    def correction(a0,a1,a2,a3,a4,a5,a6,a7,a8):
+    @pyqtSlot(np.ndarray)
+    def correction(array):
         r = self.qr
         theta = self.theta
+        
+        array[0] = a0
+        array[1] = a1
+        array[2] = a2
+        array[3] = a3
+        array[4] = a4
+        array[5] = a5
+        array[6] = a6
+        array[7] = a7
+        array[8] = a8
 
         correction = a0 + a1 * r * np.cos(theta) \
                 + a2 * r * np.sin(theta) \
