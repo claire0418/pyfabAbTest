@@ -12,9 +12,10 @@ class QAbWidget(QWidget):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        #self.ui = self._loadUi('AbWidget.ui')
         
         uifile = Path('pyfablib').joinpath('AbWidget.ui')
+        self.ui = uifile
+        
         uic.loadUi(uifile, self)
         
         self._connectSignals()
