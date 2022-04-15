@@ -1,6 +1,7 @@
 
 from .CGH import CGH
 import numpy as np
+from PyQt5.QtCore import (pyqtSignal, pyqtSlot)
 
 
 class QAberration(CGH)
@@ -11,6 +12,8 @@ class QAberration(CGH)
         super(QAberration, self).__init__(*args, *kwargs)
         self.correction = 0
 
+       
+    @pyqtSlot(float,float,float,float,float,float,float,float,float)
     def correction(a0,a1,a2,a3,a4,a5,a6,a7,a8):
         r = self.qr
         theta = self.theta
