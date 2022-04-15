@@ -6,7 +6,7 @@ import numpy as np
 from .QAberration import QAberration
 
 
-class QAbWidget(QWidget)
+class QAbWidget(QWidget):
 
     coefs = pyqtSignal(float, float, float, float, float, float, float, float, float) 
 
