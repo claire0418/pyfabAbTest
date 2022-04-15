@@ -8,7 +8,7 @@ import numpy as np
 
 class QAbWidget(QWidget):
 
-    coefs = pyqtSignal(object) 
+    coefs = pyqtSignal(np.ndarray) 
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -57,7 +57,7 @@ class QAbWidget(QWidget):
         self.ui.a8.setValue(a8)
 
         # ugh
-        self.coefs.emit(a0,a1,a2,a3,a4,a5,a6,a7,a8)
+        self.coefs.emit(np.array([a0,a1,a2,a3,a4,a5,a6,a7,a8]))
 
 
 if __name__ == '__main__':
