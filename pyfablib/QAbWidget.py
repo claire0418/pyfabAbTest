@@ -3,7 +3,6 @@ from PyQt5 import uic
 from PyQt5.QtWidgets import QWidget
 from PyQt5.QtCore import (pyqtSignal, pyqtSlot)
 import numpy as np
-from .QCGH.QAberration import QAberration
 
 
 class QAbWidget(QWidget):
@@ -12,7 +11,11 @@ class QAbWidget(QWidget):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.ui = self._loadUi('AbWidget.ui')
+        #self.ui = self._loadUi('AbWidget.ui')
+        
+        uifile = Path('pyfablib').joinpath('AbWidget.ui')
+        uic.loadUi(uifile, self)
+        
         self._connectSignals()
         self.ab = QAberration(self)
 
