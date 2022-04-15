@@ -13,7 +13,7 @@ class QAberration(CGH):
         self.zernike = 0
        
     @pyqtSlot(np.ndarray)
-    def correction(array):
+    def correction(self, array):
         r = self.qr
         theta = self.theta
         
