@@ -1,5 +1,6 @@
 
 from PyQt5 import uic
+from pathlib import Path
 from PyQt5.QtWidgets import QWidget
 from PyQt5.QtCore import (pyqtSignal, pyqtSlot)
 import numpy as np
@@ -11,7 +12,7 @@ class QAbWidget(QWidget):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.ui = self._loadUi('AbWidget.ui')
+        self.ui = self._loadUi(Path('pyfablib').joinpath('AbWidget.ui'))
         self._connectSignals()
 
     def _loadUi(self, uifile):
