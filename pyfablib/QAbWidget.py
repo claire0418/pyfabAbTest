@@ -19,15 +19,6 @@ class QAbWidget(QWidget):
         ui = form()
         ui.setupUi(self)
         return ui
-        
-        self._connectSignals()
-        self.ab = QAberration(self)
-
-    def _loadUi(self, uifile):
-        form, _ = uic.loadUiType(uifile)
-        ui = form()
-        ui.setupUi(self)
-        return ui
 
     def _connectSignals(self):
             self.ui.a0slid.valueChanged.connect(self.updateCoefs)
