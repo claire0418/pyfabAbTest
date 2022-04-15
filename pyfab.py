@@ -47,7 +47,7 @@ class PyFab(QMainWindow):
         
         #aberration correction
         self.abwid = QAbWidget(self)
-        self.aber.device = QAberration(self).start()
+        self.aber = QAberration(self).start()
         
         # Computation pipeline
         self.cgh.device = CGH(self, shape=self.slm.shape).start()
@@ -113,9 +113,9 @@ class PyFab(QMainWindow):
         self.pattern.trapAdded.connect(self.traps.registerTrap)
         
         #aberration stuff
-        self.abwid.coefs.connect(self.aber.device.correction)
-        self.aber.device.correctionReady.connect(self.pattern.toggleHologram)
-        self.pattern.sigCompute.connect(self.aber.device.compute)
+        self.abwid.coefs.connect(self.aber.correction)
+        self.aber.correctionReady.connect(self.pattern.toggleHologram)
+        self.pattern.sigCompute.connect(self.aber.compute)
         
         
         # 3. Project result when calculation is complete
