@@ -3,7 +3,7 @@ from PyQt5 import uic
 from PyQt5.QtWidgets import QWidget
 from PyQt5.QtCore import (pyqtSignal, pyqtSlot)
 import numpy as np
-from .QAberration import QAberration
+from .QCGH.QAberration import QAberration
 
 
 class QAbWidget(QWidget):
