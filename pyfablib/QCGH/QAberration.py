@@ -4,11 +4,11 @@ import numpy as np
 from PyQt5.QtCore import (pyqtSignal, pyqtSlot)
 
 
-class QAberration(CGH)
+class QAberration(CGH):
 
     correctionReady = pyqtSignal()
 
-    def __init__(self, *args, **kwargs) # figure this out lol
+    def __init__(self, *args, **kwargs): # figure this out lol
         super(QAberration, self).__init__(*args, *kwargs)
         self.correction = 0
 
