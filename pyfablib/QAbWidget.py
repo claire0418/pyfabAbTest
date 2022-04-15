@@ -35,15 +35,15 @@ class QAbWidget(QWidget):
     def updateCoefs(self):
         
         # define coefs from the slider values
-        a0 = float(self.ui.a0slid.value()/100.)
-        a1 = float(self.ui.a1slid.value()/100.)
-        a2 = float(self.ui.a2slid.value()/100.)
-        a3 = float(self.ui.a3slid.value()/100.)
-        a4 = float(self.ui.a4slid.value()/100.)
-        a5 = float(self.ui.a5slid.value()/100.)
-        a6 = float(self.ui.a6slid.value()/100.)
-        a7 = float(self.ui.a7slid.value()/100.)
-        a8 = float(self.ui.a8slid.value()/100.)
+        a0 = self.ui.a0slid.value()/100.
+        a1 = self.ui.a1slid.value()/100.
+        a2 = self.ui.a2slid.value()/100.
+        a3 = self.ui.a3slid.value()/100.
+        a4 = self.ui.a4slid.value()/100.
+        a5 = self.ui.a5slid.value()/100.
+        a6 = self.ui.a6slid.value()/100.
+        a7 = self.ui.a7slid.value()/100.
+        a8 = self.ui.a8slid.value()/100.
         
         # set value for spinboxes on widget
         self.ui.a0.setValue(a0)
@@ -57,7 +57,7 @@ class QAbWidget(QWidget):
         self.ui.a8.setValue(a8)
 
         # ugh
-        self.coefs.emit(a0,a1,a2,a3,a4,a5,a6,a7,a8)
+        self.coefs.emit(float(a0),a1,a2,a3,a4,a5,a6,a7,a8)
 
 
 if __name__ == '__main__':
