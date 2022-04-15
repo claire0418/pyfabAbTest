@@ -17,15 +17,15 @@ class QAberration(CGH):
         r = self.qr
         theta = self.theta
         
-        array[0] = a0
-        array[1] = a1
-        array[2] = a2
-        array[3] = a3
-        array[4] = a4
-        array[5] = a5
-        array[6] = a6
-        array[7] = a7
-        array[8] = a8
+        a0 = array[0]
+        a1 = array[1]
+        a2 = array[2]
+        a3 = array[3]
+        a4 = array[4]
+        a5 = array[5]
+        a6 = array[6]
+        a7 = array[7]
+        a8 = array[8]
 
         phi = a0 + a1 * r * np.cos(theta) \
                 + a2 * r * np.sin(theta) \
