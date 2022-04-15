@@ -12,11 +12,14 @@ class QAbWidget(QWidget):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        
-        uifile = Path('pyfablib').joinpath('AbWidget.ui')
-        self.ui = uifile
-        
-        uic.loadUi(uifile, self)
+        self.ui = self._loadUi('AbWidget.ui')
+        self._connectSignals()
+
+    def _loadUi(self, uifile):
+        form, _ = uic.loadUiType(uifile)
+        ui = form()
+        ui.setupUi(self)
+        return ui
         
         self._connectSignals()
         self.ab = QAberration(self)
@@ -28,15 +31,15 @@ class QAbWidget(QWidget):
         return ui
 
     def _connectSignals(self):
-            self.ui.a0slid.valueChanged.connect(self.updatea0)
-            self.ui.a1slid.valueChanged.connect(self.updatea1)
-            self.ui.a2slid.valueChanged.connect(self.updatea2)
-            self.ui.a3slid.valueChanged.connect(self.updatea3)
-            self.ui.a4slid.valueChanged.connect(self.updatea4)
-            self.ui.a5slid.valueChanged.connect(self.updatea5)
-            self.ui.a6slid.valueChanged.connect(self.updatea6)
-            self.ui.a7slid.valueChanged.connect(self.updatea7)
-            self.ui.a8slid.valueChanged.connect(self.updatea8)
+            self.ui.a0slid.valueChanged.connect(self.updateCoefs)
+            self.ui.a1slid.valueChanged.connect(self.updateCoefs)
+            self.ui.a2slid.valueChanged.connect(self.updateCoefs)
+            self.ui.a3slid.valueChanged.connect(self.updateCoefs)
+            self.ui.a4slid.valueChanged.connect(self.updateCoefs)
+            self.ui.a5slid.valueChanged.connect(self.updateCoefs)
+            self.ui.a6slid.valueChanged.connect(self.updateCoefs)
+            self.ui.a7slid.valueChanged.connect(self.updateCoefs)
+            self.ui.a8slid.valueChanged.connect(self.updateCoefs)
 
     def updateCoefs(self):
         
@@ -63,7 +66,7 @@ class QAbWidget(QWidget):
         self.ui.a8.setValue(a8)
 
         # ugh
-        coefs.emit(a0,a1,a2,a3,a4,a5,a6,a7,a8)
+        self.coefs.emit(a0,a1,a2,a3,a4,a5,a6,a7,a8)
 
 
 if __name__ == '__main__':
