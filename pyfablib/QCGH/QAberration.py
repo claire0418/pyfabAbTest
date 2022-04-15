@@ -13,7 +13,7 @@ class QAberration(CGH):
         self.correction = 0
 
        
-    @pyqtSlot(pbject)
+    @pyqtSlot(object)
     def correction(a0,a1,a2,a3,a4,a5,a6,a7,a8):
         r = self.qr
         theta = self.theta
