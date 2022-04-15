@@ -10,8 +10,7 @@ class QAberration(CGH):
 
     def __init__(self, *args, **kwargs): # figure this out lol
         super(QAberration, self).__init__(*args, *kwargs)
-        self.correction = 0
-
+        self.zernike = 0
        
     @pyqtSlot(np.ndarray)
     def correction(array):
@@ -28,7 +27,7 @@ class QAberration(CGH):
         array[7] = a7
         array[8] = a8
 
-        correction = a0 + a1 * r * np.cos(theta) \
+        phi = a0 + a1 * r * np.cos(theta) \
                 + a2 * r * np.sin(theta) \
                 + a3 * (2*r**2 - 1) \
                 + a4 * r**2 * np.cos(2*theta) \
@@ -37,8 +36,8 @@ class QAberration(CGH):
                 + a7 * (3*r**2 - 2) * r * np.sin(theta) \
                 + a8 * (6*r**4 - 6*r**2 +1)
 
-        self.correction = correction
+        self.zernike = phi
         correctionReady.emit()
 
     def quantize(psi):
-        return ((128. / np.pi) * (psi+self.correction) + 127.).astype(np.uint8)
+        return ((128. / np.pi) * (psi+self.zernike) + 127.).astype(np.uint8)
