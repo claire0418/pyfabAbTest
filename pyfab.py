@@ -9,6 +9,8 @@ from PyQt5.QtCore import pyqtSlot
 from jansenlib.video import QCamera
 from pyfablib.QCGH import CGH
 from pyfablib.QSLM import QSLM
+from pyfablib.QCGH import QAberration
+from pyfablib.QAbWidget import QAbWidget
 from pyfablib.traps import QTrappingPattern
 from tasks import (buildTaskMenu, QTaskmanager)
 from common.Configuration import Configuration
@@ -42,9 +44,14 @@ class PyFab(QMainWindow):
 
         # Spatial light modulator
         self.slm = QSLM(self)
-
+        
+        #aberration correction
+        self.abwid = QAbWidget(self)
+        self.aber.device = QAberration(self).start()
+        
         # Computation pipeline
         self.cgh.device = CGH(self, shape=self.slm.shape).start()
+        
 
         # Trapping pattern is an interactive overlay
         # that translates user actions into hologram computations
@@ -104,6 +111,13 @@ class PyFab(QMainWindow):
         # 2. Trap widget reflects changes to trapping pattern
         self.pattern.sigCompute.connect(self.cgh.device.compute)
         self.pattern.trapAdded.connect(self.traps.registerTrap)
+        
+        #aberration stuff
+        self.abwid.coefs.connect(self.aber.device.correction)
+        self.aber.device.correctionReady.connect(self.pattern.toggleHologram)
+        self.pattern.sigCompute.connect(self.aber.device.compute)
+        
+        
         # 3. Project result when calculation is complete
         self.cgh.device.sigHologramReady.connect(self.slm.setData)
         self.cgh.device.sigHologramReady.connect(self.slmView.setData)
