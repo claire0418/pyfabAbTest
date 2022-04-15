@@ -9,7 +9,7 @@ from PyQt5.QtCore import pyqtSlot
 from jansenlib.video import QCamera
 from pyfablib.QCGH import CGH
 from pyfablib.QSLM import QSLM
-from pyfablib.QCGH import QAberration
+from pyfablib.QCGH.QAberration import QAberration
 from pyfablib.QAbWidget import QAbWidget
 from pyfablib.traps import QTrappingPattern
 from tasks import (buildTaskMenu, QTaskmanager)
