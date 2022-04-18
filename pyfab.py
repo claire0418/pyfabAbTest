@@ -113,8 +113,8 @@ class PyFab(QMainWindow):
         self.pattern.trapAdded.connect(self.traps.registerTrap)
         
         #aberration stuff
-        #self.abwid.coefs.connect(self.aber.correction)
-        #self.aber.correctionReady.connect(self.pattern.toggleHologram)
+        self.abwid.coefs.connect(self.aber.correction)
+        self.aber.correctionReady.connect(self.aber.compute)
         #self.pattern.sigCompute.connect(self.aber.compute)
         
         
