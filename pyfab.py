@@ -50,7 +50,7 @@ class PyFab(QMainWindow):
         
         #aberration correction
         self.abwid = QAbWidget(self)
-        self.aber = QAberration(self, shape=self.cgh.device.shape).start()
+        self.aber = QAberration(self, shape=self.slm.shape).start()
         
 
         # Trapping pattern is an interactive overlay
