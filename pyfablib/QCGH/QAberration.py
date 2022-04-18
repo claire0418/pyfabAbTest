@@ -9,7 +9,7 @@ class QAberration(CGH):
     correctionReady = pyqtSignal()
 
     def __init__(self, *args, **kwargs): # figure this out lol
-        super(QAberration, self).__init__(*args, *kwargs)
+        super(QAberration, self).__init__(*args, **kwargs)
         self.zernike = 0
        
     @pyqtSlot(np.ndarray)
