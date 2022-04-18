@@ -114,7 +114,7 @@ class PyFab(QMainWindow):
         
         #aberration stuff
         self.abwid.coefs.connect(self.aber.correction)
-        self.aber.correctionReady.connect(self.aber.compute)
+        #self.aber.correctionReady.connect(self.aber.compute)
         #self.pattern.sigCompute.connect(self.aber.compute)
         
         
