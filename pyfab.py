@@ -109,13 +109,13 @@ class PyFab(QMainWindow):
         self.screen.sigMouseMove.connect(self.pattern.mouseMove)
         self.screen.sigMouseWheel.connect(self.pattern.mouseWheel)
         # 2. Trap widget reflects changes to trapping pattern
-        #self.pattern.sigCompute.connect(self.cgh.device.compute)
+        self.pattern.sigCompute.connect(self.cgh.device.compute)
         self.pattern.trapAdded.connect(self.traps.registerTrap)
         
         #aberration stuff
-        self.abwid.coefs.connect(self.aber.correction)
-        self.aber.correctionReady.connect(self.pattern.toggleHologram)
-        self.pattern.sigCompute.connect(self.aber.compute)
+        #self.abwid.coefs.connect(self.aber.correction)
+        #self.aber.correctionReady.connect(self.pattern.toggleHologram)
+        #self.pattern.sigCompute.connect(self.aber.compute)
         
         
         # 3. Project result when calculation is complete
