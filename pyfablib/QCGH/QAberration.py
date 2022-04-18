@@ -6,7 +6,7 @@ from PyQt5.QtCore import (pyqtSignal, pyqtSlot)
 
 class QAberration(CGH):
 
-    correctionReady = pyqtSignal()
+    correctionReady = pyqtSignal(np.ndarray)
 
     def __init__(self, *args, **kwargs): # figure this out lol
         super(QAberration, self).__init__(*args, **kwargs)
