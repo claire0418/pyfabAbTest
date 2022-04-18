@@ -41,6 +41,6 @@ class QAberration(CGH):
 
     #def quantize(self, psi):
         #return ((128. / np.pi) * (np.angle(psi)+self.zernike) + 127.).astype(np.uint8)
-    def newcompute(phi):
+    def newcompute(self, phi):
         phi2 = phi + self.quantize(self.zernike)
         self.correctionReady.emit(phi2)
