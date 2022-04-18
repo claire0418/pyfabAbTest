@@ -9,7 +9,7 @@ class QAberration(CGH):
     correctionReady = pyqtSignal(np.ndarray)
     recalculate = pyqtSignal()
 
-    def __init__(self, *args, **kwargs): # figure this out lol
+    def __init__(self, *args, **kwargs): 
         super(QAberration, self).__init__(*args, **kwargs)
         self.zernike = 0
        
@@ -42,6 +42,7 @@ class QAberration(CGH):
 
     def quantize(self, psi):
         return ((128. / np.pi) * (psi) + 127.).astype(np.uint8)
+    
     def newcompute(self, phi):
         phi2 = phi + self.quantize(self.zernike)
         self.correctionReady.emit(phi2)
