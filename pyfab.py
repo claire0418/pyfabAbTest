@@ -45,12 +45,12 @@ class PyFab(QMainWindow):
         # Spatial light modulator
         self.slm = QSLM(self)
         
-        #aberration correction
-        self.abwid = QAbWidget(self)
-        self.aber = QAberration(self, shape=self.slm.shape).start()
-        
         # Computation pipeline
         self.cgh.device = CGH(self, shape=self.slm.shape).start()
+        
+        #aberration correction
+        self.abwid = QAbWidget(self)
+        self.aber = QAberration(self, shape=self.cgh.device.shape).start()
         
 
         # Trapping pattern is an interactive overlay
