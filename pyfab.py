@@ -47,7 +47,7 @@ class PyFab(QMainWindow):
         
         #aberration correction
         self.abwid = QAbWidget(self)
-        self.aber = QAberration(self).start()
+        self.aber = QAberration(self, shape=self.slm.shape).start()
         
         # Computation pipeline
         self.cgh.device = CGH(self, shape=self.slm.shape).start()
