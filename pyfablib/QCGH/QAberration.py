@@ -7,6 +7,7 @@ from PyQt5.QtCore import (pyqtSignal, pyqtSlot)
 class QAberration(CGH):
 
     correctionReady = pyqtSignal(np.ndarray)
+    recalculate = pyqtSignal()
 
     def __init__(self, *args, **kwargs): # figure this out lol
         super(QAberration, self).__init__(*args, **kwargs)
@@ -37,7 +38,7 @@ class QAberration(CGH):
                 + a8 * (6*r**4 - 6*r**2 +1)
 
         self.zernike = phi
-        #self.correctionReady.emit()
+        self.recalculate.emit()
 
     def quantize(self, psi):
         return ((128. / np.pi) * (psi) + 127.).astype(np.uint8)
