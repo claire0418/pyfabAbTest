@@ -12,7 +12,7 @@ class QAbWidget(QWidget):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.ui = self._loadUi(Path('pyfablib').joinpath('AbWidget.ui'))
+        self.ui = self._loadUi(Path('pyfablib/QCGH').joinpath('AbWidget.ui'))
         self._connectSignals()
 
     def _loadUi(self, uifile):
