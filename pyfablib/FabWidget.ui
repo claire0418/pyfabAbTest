@@ -638,6 +638,16 @@
           </widget>
          </item>
          <item>
+          <widget class="QAbWidget" name="AbWidget">
+           <property name="frameShape">
+            <enum>QFrame::StyledPanel</enum>
+           </property>
+           <property name="frameShadow">
+            <enum>QFrame::Raised</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
           <spacer name="verticalSpacerCGH">
            <property name="orientation">
             <enum>Qt::Vertical</enum>
@@ -882,6 +892,18 @@
    <class>QCGH</class>
    <extends>QFrame</extends>
    <header>pyfablib.QCGH.QCGH</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>QTrapWidget</class>
+   <extends>QFrame</extends>
+   <header>pyfablib.traps.QTrapWidget</header>
+   <container>1</container>
+  </customwidget>
+   <customwidget>
+   <class>QAbWidget</class>
+   <extends>QFrame</extends>
+   <header>pyfablib.QCGH.QAbWidget</header>
    <container>1</container>
   </customwidget>
   <customwidget>
