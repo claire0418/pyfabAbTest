@@ -10,7 +10,7 @@ from jansenlib.video import QCamera
 from pyfablib.QCGH import CGH
 from pyfablib.QSLM import QSLM
 from pyfablib.QCGH.QAberration import QAberration
-from pyfablib.QAbWidget import QAbWidget
+from pyfablib.QCGH.QAbWidget import QAbWidget
 from pyfablib.traps import QTrappingPattern
 from tasks import (buildTaskMenu, QTaskmanager)
 from common.Configuration import Configuration
