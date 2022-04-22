@@ -6,7 +6,7 @@ from PyQt5.QtCore import (pyqtSignal, pyqtSlot)
 import numpy as np
 
 
-class QAbWidget(QWidget):
+class QAbWidget(QFrame):
 
     coefs = pyqtSignal(np.ndarray) 
 
