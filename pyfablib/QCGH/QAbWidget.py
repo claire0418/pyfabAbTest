@@ -3,6 +3,7 @@ from PyQt5 import uic
 from pathlib import Path
 from PyQt5.QtWidgets import (QWidget, QFrame)
 from PyQt5.QtCore import (pyqtSignal, pyqtSlot)
+from .AbWidget import Ui_Form
 import numpy as np
 
 
@@ -12,14 +13,16 @@ class QAbWidget(QFrame):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.ui = self._loadUi(Path('pyfablib/QCGH').joinpath('AbWidget.ui'))
+        #self.ui = self._loadUi(Path('pyfablib/QCGH').joinpath('AbWidget.ui'))
+        self.ui = Ui_Form()
+        self.ui.setupUi(self)
         self._connectSignals()
 
-    def _loadUi(self, uifile):
-        form, _ = uic.loadUiType(uifile)
-        ui = form()
-        ui.setupUi(self)
-        return ui
+    #def _loadUi(self, uifile):
+        #form, _ = uic.loadUiType(uifile)
+        #ui = form()
+        #ui.setupUi(self)
+        #return ui
 
     def _connectSignals(self):
             self.ui.a0slid.valueChanged.connect(self.updateCoefs)
