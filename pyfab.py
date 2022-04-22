@@ -49,7 +49,7 @@ class PyFab(QMainWindow):
         self.cgh.device = CGH(self, shape=self.slm.shape).start()
         
         #aberration correction
-        self.abwid = QAbWidget(self)
+        #self.abwid = QAbWidget(self)
         self.aber = QAberration(self, shape=self.slm.shape).start()
         
 
@@ -113,7 +113,7 @@ class PyFab(QMainWindow):
         self.pattern.trapAdded.connect(self.traps.registerTrap)
         
         # 2.5. aberration stuff
-        self.abwid.coefs.connect(self.aber.correction)
+        self.aberration.coefs.connect(self.aber.correction)
         self.aber.recalculate.connect(self.pattern.toggleHologram)
         
         
