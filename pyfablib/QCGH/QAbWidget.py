@@ -31,6 +31,7 @@ class QAbWidget(QWidget):
             self.ui.a6slid.valueChanged.connect(self.updateCoefs)
             self.ui.a7slid.valueChanged.connect(self.updateCoefs)
             self.ui.a8slid.valueChanged.connect(self.updateCoefs)
+            self.ui.Reset.clicked.connect(self.reset)
 
     def updateCoefs(self):
         
@@ -58,6 +59,18 @@ class QAbWidget(QWidget):
 
         # ugh
         self.coefs.emit(np.array([a0,a1,a2,a3,a4,a5,a6,a7,a8]))
+        
+    def reset(self):
+        self.ui.a0slid.setValue(0)
+        self.ui.a1slid.setValue(0)
+        self.ui.a2slid.setValue(0)
+        self.ui.a3slid.setValue(0)
+        self.ui.a4slid.setValue(0)
+        self.ui.a5slid.setValue(0)
+        self.ui.a6slid.setValue(0)
+        self.ui.a7slid.setValue(0)
+        self.ui.a8slid.setValue(0)
+        self.updateCoefs()
 
 
 if __name__ == '__main__':
