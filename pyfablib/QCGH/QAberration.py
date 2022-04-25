@@ -11,7 +11,7 @@ class QAberration(CGH):
 
     def __init__(self, *args, **kwargs): 
         super(QAberration, self).__init__(*args, **kwargs)
-        self.zernike = 0
+        self.zernike = self._psi = np.zeros(self.shape)
        
     @pyqtSlot(np.ndarray)
     def correction(self, array):
