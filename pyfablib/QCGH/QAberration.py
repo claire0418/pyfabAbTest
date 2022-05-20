@@ -37,7 +37,7 @@ class QAberration(CGH):
                 + a6 * (3*r**2 - 2) * r * np.cos(theta) \
                 + a7 * (3*r**2 - 2) * r * np.sin(theta) \
                 + a8 * (6*r**4 - 6*r**2 +1) \
-                + rand*np.random.rand(self.shape)
+                + rand*np.random.rand(self.shape[0],self.shape[1])
 
         self.zernike = phi
         self.recalculate.emit()
