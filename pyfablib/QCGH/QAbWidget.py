@@ -34,6 +34,7 @@ class QAbWidget(QFrame):
             self.ui.a6slid.valueChanged.connect(self.updateCoefs)
             self.ui.a7slid.valueChanged.connect(self.updateCoefs)
             self.ui.a8slid.valueChanged.connect(self.updateCoefs)
+            self.ui.randomslider.valueChanged.connect(self.updateCoefs)
             self.ui.Reset.clicked.connect(self.reset)
 
     def updateCoefs(self):
@@ -48,6 +49,7 @@ class QAbWidget(QFrame):
         a6 = np.pi*self.ui.a6slid.value()/100.
         a7 = np.pi*self.ui.a7slid.value()/100.
         a8 = np.pi*self.ui.a8slid.value()/100.
+        rand = np.pi*self.ui.randomslider.value()/100.
         
         # set value for spinboxes on widget
         self.ui.a0.setValue(a0)
@@ -61,7 +63,7 @@ class QAbWidget(QFrame):
         self.ui.a8.setValue(a8)
 
         # ugh
-        self.coefs.emit(np.array([a0,a1,a2,a3,a4,a5,a6,a7,a8]))
+        self.coefs.emit(np.array([a0,a1,a2,a3,a4,a5,a6,a7,a8,rand]))
         
     def reset(self):
         self.ui.a0slid.setValue(0)
