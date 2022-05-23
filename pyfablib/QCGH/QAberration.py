@@ -48,3 +48,5 @@ class QAberration(CGH):
     def newcompute(self, phi):
         phi2 = phi + self.quantize(self.zernike)
         self.correctionReady.emit(phi2)
+        
+        
