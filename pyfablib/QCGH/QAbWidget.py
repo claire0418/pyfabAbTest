@@ -13,16 +13,9 @@ class QAbWidget(QFrame):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        #self.ui = self._loadUi(Path('pyfablib/QCGH').joinpath('AbWidget.ui'))
         self.ui = Ui_Form()
         self.ui.setupUi(self)
         self._connectSignals()
-
-    #def _loadUi(self, uifile):
-        #form, _ = uic.loadUiType(uifile)
-        #ui = form()
-        #ui.setupUi(self)
-        #return ui
 
     def _connectSignals(self):
             self.ui.a0slid.valueChanged.connect(self.updateCoefs)
@@ -39,7 +32,7 @@ class QAbWidget(QFrame):
 
     def updateCoefs(self):
         
-        # define coefs from the slider values
+        # define coefficients from the slider values
         a0 = np.pi*self.ui.a0slid.value()/100.
         a1 = np.pi*self.ui.a1slid.value()/100.
         a2 = np.pi*self.ui.a2slid.value()/100.
@@ -62,7 +55,7 @@ class QAbWidget(QFrame):
         self.ui.a7.setValue(a7)
         self.ui.a8.setValue(a8)
 
-        # ugh
+        # send coefficients
         self.coefs.emit(np.array([a0,a1,a2,a3,a4,a5,a6,a7,a8,rand]))
         
     def reset(self):
