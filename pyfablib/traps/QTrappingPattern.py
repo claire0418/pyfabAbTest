@@ -94,6 +94,11 @@ class QTrappingPattern(pg.ScatterPlotItem):
             self.sigCompute.emit(traps)
             self._hologramOutdated = False
             logger.debug('refreshHologram')
+            
+    #added for optimization
+    def sendTraps(self):
+      traps = self.traps.flatten()
+      self.sigCompute.emit(traps)
 
     def selectedPoint(self, position):
         '''Index of trap at position of mouse click'''
