@@ -25,6 +25,7 @@ class QTrappingPattern(pg.ScatterPlotItem):
 
     trapAdded = pyqtSignal(QTrap)
     sigCompute = pyqtSignal(object)
+    optimizeTraps = pyqtSignal(object)
 
     def __init__(self, parent=None, *args, **kwargs):
         super(QTrappingPattern, self).__init__(*args, **kwargs)
@@ -98,7 +99,7 @@ class QTrappingPattern(pg.ScatterPlotItem):
     #added for optimization
     def sendTraps(self):
       traps = self.traps.flatten()
-      self.sigCompute.emit(traps)
+      self.optimizeTraps.emit(traps)
 
     def selectedPoint(self, position):
         '''Index of trap at position of mouse click'''
