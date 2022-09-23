@@ -10,6 +10,8 @@ import numpy as np
 class QAbWidget(QFrame):
 
     coefs = pyqtSignal(np.ndarray) 
+    optimize = pyqtSignal()
+    unoptimize = pyqtSignal()
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -29,6 +31,10 @@ class QAbWidget(QFrame):
             self.ui.a8slid.valueChanged.connect(self.updateCoefs)
             self.ui.randomslider.valueChanged.connect(self.updateCoefs)
             self.ui.Reset.clicked.connect(self.reset)
+            
+            #optimization
+            self.ui.optimize.clicked.connect(self.optimize.emit())
+            self.ui.unoptimize.clicked.connect(self.unoptimize.emit())
 
     def updateCoefs(self):
         
