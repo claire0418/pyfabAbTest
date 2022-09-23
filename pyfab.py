@@ -11,6 +11,7 @@ from pyfablib.QCGH import CGH
 from pyfablib.QSLM import QSLM
 from pyfablib.QCGH.QAberration import QAberration
 from pyfablib.QCGH.QAbWidget import QAbWidget
+from pyfablib.QCGH.QOptimize import QOptimize
 from pyfablib.traps import QTrappingPattern
 from tasks import (buildTaskMenu, QTaskmanager)
 from common.Configuration import Configuration
@@ -51,6 +52,9 @@ class PyFab(QMainWindow):
         #aberration correction
         #self.abwid = QAbWidget(self)
         self.aber = QAberration(self, shape=self.slm.shape).start()
+        
+        #optimization algorithm
+        self.optimization = QOptimize(self).start()
         
 
         # Trapping pattern is an interactive overlay
@@ -115,6 +119,12 @@ class PyFab(QMainWindow):
         # 2.5. aberration stuff
         self.aberration.coefs.connect(self.aber.correction)
         self.aber.recalculate.connect(self.pattern.toggleHologram)
+        
+        # optimization stuff
+        self.aberration.optimize.connect(self.pattern.sendTraps)
+        self.pattern.optimizeTraps.connect(self.optimization.optimize)
+        self.optimization.recalculate.connect(self.aber.newcompute)
+        self.aberration.unoptimize.connect(self.pattern.toggleHologram)
         
         
         # 3. Project result when calculation is complete
