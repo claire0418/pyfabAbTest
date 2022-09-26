@@ -14,8 +14,8 @@ class QOptimize(CGH):
     def __init__(self, *args, **kwargs): 
         super(QOptimize, self).__init__(*args, **kwargs)
 
-	self.Vm = []
-	self.delta = []
+        self.Vm = []
+        self.delta = []
 
 
     def calculate_delta(self, xm, ym, zm):
