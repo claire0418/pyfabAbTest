@@ -16,6 +16,10 @@ class QOptimize(CGH):
 
         self.Vm = []
         self.delta = []
+        self.phi = np.zeros((480,640))
+	
+    def getPhi(self,phi)
+        self.phi = phi
 
 
     def calculate_delta(self, xm, ym, zm):
