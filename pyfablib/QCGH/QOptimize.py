@@ -34,7 +34,7 @@ class QOptimize(CGH):
         return deltam
 
     def compile_delta(traps):
-	for trap in traps:
+        for trap in traps:
             d = calculate_delta(self, group.trap.r)
             self.delta.append(d)
 	
