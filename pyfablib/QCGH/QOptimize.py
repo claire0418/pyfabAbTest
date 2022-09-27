@@ -39,13 +39,13 @@ class QOptimize(CGH):
 
     def compile_delta(self, traps):
         for trap in traps:
-            d = self.calculate_delta(self, group._r)
+            d = self.calculate_delta(self, trap)
             self.delta.append(d)
 	
     def recalculate_Vm(self, phase, traps):
         self.Vm.clear()
         for trap in traps:
-            d = self.calculate_delta(self, group._r) #group.trap.r might not work hnnng
+            d = self.calculate_delta(self, trap) #group.trap.r might not work hnnng
             v = np.zeros((480,640))
             for x in range(0,480):
                 for y in range(0,640):
