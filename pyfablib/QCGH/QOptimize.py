@@ -8,8 +8,7 @@ from pyfablib.traps.QTrapGroup import QTrapGroup as group
 
 class QOptimize(CGH):
 
-    phaseReady = pyqtSignal(np.ndarray)
-    recalculate = pyqtSignal()
+    recalculate = pyqtSignal(np.ndarray)
 
     def __init__(self, *args, **kwargs): 
         super(QOptimize, self).__init__(*args, **kwargs)
