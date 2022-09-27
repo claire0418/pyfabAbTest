@@ -22,9 +22,10 @@ class QOptimize(CGH):
         self.phi = phi
 
 
-    def calculate_delta(self, trap):
+    def calculate_delta(self, position):
         '''calculate delta_mj for one trap'''
 	
+        trap = np.array(position)
         xm = trap[0]
         ym = trap[1]
         zm = trap[2]
@@ -49,7 +50,7 @@ class QOptimize(CGH):
     def recalculate_Vm(self, phase, traps):
         self.Vm.clear()
         for trap in traps:
-            d = self.calculate_delta(trap) #group.trap.r might not work hnnng
+            d = self.calculate_delta(trap)
             v = np.zeros((480,640))
             for x in range(0,480):
                 for y in range(0,640):
