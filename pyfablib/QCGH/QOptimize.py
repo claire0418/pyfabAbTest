@@ -59,6 +59,9 @@ class QOptimize(CGH):
         Vm = np.array(self.Vm)
         return sum(abs(Vm))/len(Vm)
 
+    def quantize(self, psi):
+        return ((128. / np.pi) * (psi) + 127.).astype(np.uint8)
+
     def optimize(self,traps):
         iterations = np.arange(0,5)
         self.recalculate_Vm(self.phi, traps)
@@ -77,4 +80,4 @@ class QOptimize(CGH):
                         phi[x][y] += np.angle(np.exp(1j*delta[m][x][y]*w[m])*(Vm[m]/abs(Vm[m])))
             self.recalculate_Vm(phi, traps)
 				
-        self.recalculate.emit(phi)
+        self.recalculate.emit(self.quantize(phi))
