@@ -53,21 +53,21 @@ class QOptimize(CGH):
         return sum(abs(Vm))/len(Vm)
 
     def optimize(traps):
-
+        iterations = np.arange(0,5)
         recalculate_Vm(self.phi, traps)
         compile_delta(traps)
         Vm = np.array(self.Vm)
         delta = np.array(self.delta)
 
-        w = np.ones(len(Vm))
+        w = np.ones((len(iterations)+1,len(Vm)))
         phi = np.zeros((480,640))
 
-        for k in range(0,5):
+        for k in iterations:
             for m in range(0,len(Vm)):
-                w[m] = w[m]*(Vm_avg()/abs(Vm[m])
+                w[k+1][m] = w[k][m]*(Vm_avg()/abs(Vm[m])
                 for x in range(0,480):
                     for y in range(0,640):
-                        phi[x][y] += np.angle(np.exp(1j*delta[m][x][y]*w[m])*(Vm[m]/abs(Vm[m])))
+                        phi[x][y] += np.angle(np.exp(1j*delta[m][x][y]*w[k+1][m])*(Vm[m]/abs(Vm[m])))
             recalculate_Vm(phi, traps)
 				
         self.recalculate.emit(phi)
