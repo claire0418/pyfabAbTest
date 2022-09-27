@@ -72,7 +72,7 @@ class QOptimize(CGH):
 
         for k in iterations:
             for m in range(0,len(Vm)):
-                w[m] = w[m]*(Vm_avg()/abs(Vm[m]))
+                w[m] = w[m]*(self.Vm_avg()/abs(Vm[m]))
                 for x in range(0,480):
                     for y in range(0,640):
                         phi[x][y] += np.angle(np.exp(1j*delta[m][x][y]*w[m])*(Vm[m]/abs(Vm[m])))
