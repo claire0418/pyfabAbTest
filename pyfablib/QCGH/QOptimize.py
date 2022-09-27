@@ -42,7 +42,7 @@ class QOptimize(CGH):
             d = calculate_delta(self, group.trap.r)
             self.delta.append(d)
 	
-    def recalculate_Vm(phase, traps):
+    def recalculate_Vm(self, phase, traps):
         self.Vm.clear()
         for trap in traps:
             d = calculate_delta(self, group.trap.r) #group.trap.r might not work hnnng
