@@ -15,7 +15,7 @@ class QOptimize(CGH):
 
         self.Vm = []
         self.delta = []
-        self.phi = np.zeros((480,640))
+        self.phi = np.zeros(self.shape)
 	
     def getPhi(self,phi):
         self.phi = phi
@@ -33,9 +33,9 @@ class QOptimize(CGH):
         #x = alpha*(np.arange(self.width) - self.xs)
         #y = np.arange(self.height) - self.ys
 
-        deltam = np.zeros((480,640))
-        for x in range(0,480):
-            for y in range(0,640):
+        deltam = np.zeros(self.shape)
+        for x in range(0,self.height):
+            for y in range(0,self.width):
                 deltam[x][y] = (np.pi*zm/(self._wavelength*self._focalLength**2))*(x**2 + y**2)*(self._slmPitch**2)*self._cameraPitch \
                              + (np.pi*2/(self._wavelength*self._focalLength))*(x*xm + y*ym)*self._slmPitch*self._cameraPitch
         return deltam
@@ -49,9 +49,9 @@ class QOptimize(CGH):
         self.Vm.clear()
         for trap in traps:
             d = self.calculate_delta(trap)
-            v = np.zeros((480,640))
-            for x in range(0,480):
-                for y in range(0,640):
+            v = np.zeros(self.shape)
+            for x in range(0,self.height):
+                for y in range(0,self.width):
                     v[x][y] = (1/307200)*np.exp(1j*(phase[x][y]-d[x][y]))
             self.Vm.append(sum(sum(v)))
 
@@ -67,13 +67,13 @@ class QOptimize(CGH):
         delta = np.array(self.delta)
 
         w = np.ones(len(Vm))
-        phi = np.zeros((480,640))
+        phi = np.zeros(self.shape)
 
         for k in iterations:
             for m in range(0,len(Vm)):
                 w[m] = w[m]*(self.Vm_avg()/abs(Vm[m]))
-                for x in range(0,480):
-                    for y in range(0,640):
+                for x in range(0,self.height):
+                    for y in range(0,self.width):
                         phi[x][y] += np.angle(np.exp(1j*delta[m][x][y]*w[m])*(Vm[m]/abs(Vm[m])))
             self.recalculate_Vm(phi, traps)
 				
