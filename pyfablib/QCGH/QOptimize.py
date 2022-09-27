@@ -52,7 +52,7 @@ class QOptimize(CGH):
         Vm = np.array(self.Vm)
         return sum(abs(Vm))/len(Vm)
 
-    def optimize(traps):
+    def optimize(self,traps):
         iterations = np.arange(0,5)
         self.recalculate_Vm(self.phi, traps)
         self.compile_delta(traps)
