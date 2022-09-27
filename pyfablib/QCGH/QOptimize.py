@@ -18,7 +18,7 @@ class QOptimize(CGH):
         self.delta = []
         self.phi = np.zeros((480,640))
 	
-    def getPhi(self,phi)
+    def getPhi(self,phi):
         self.phi = phi
 
 
