@@ -56,7 +56,7 @@ class QOptimize(CGH):
                     v[x][y] = (1/307200)*np.exp(1j*(phase[x][y]-d[x][y]))
             self.Vm.append(sum(sum(v)))
 
-    def Vm_avg():
+    def Vm_avg(self):
         Vm = np.array(self.Vm)
         return sum(abs(Vm))/len(Vm)
 
