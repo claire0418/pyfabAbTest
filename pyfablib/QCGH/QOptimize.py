@@ -27,20 +27,17 @@ class QOptimize(CGH):
 	
         print(trap)
 	
-        xm = trap[0]
-        ym = trap[1]
-        zm = trap[2]
         #SLM pixel coordinates, this might be wrong????
-        alpha = np.cos(np.radians(self.phis))
-        x = alpha*(np.arange(self.width) - self.xs)
-        y = np.arange(self.height) - self.ys
+        #alpha = np.cos(np.radians(self.phis))
+        #x = alpha*(np.arange(self.width) - self.xs)
+        #y = np.arange(self.height) - self.ys
 
-        deltam = np.zeros((480,640))
-        for x in range(0,480):
-            for y in range(0,640):
-                deltam[x][y] = (np.pi*zm/(self._wavelength*self._focalLength**2))*(x**2 + y**2)*(self._slmPitch**2)*self._cameraPitch \
-                             + (np.pi*2/(self._wavelength*self._focalLength))*(x*xm + y*ym)*self._slmPitch*self._cameraPitch
-        return deltam
+        #deltam = np.zeros((480,640))
+        #for x in range(0,480):
+            #for y in range(0,640):
+                #deltam[x][y] = (np.pi*zm/(self._wavelength*self._focalLength**2))*(x**2 + y**2)*(self._slmPitch**2)*self._cameraPitch \
+                             #+ (np.pi*2/(self._wavelength*self._focalLength))*(x*xm + y*ym)*self._slmPitch*self._cameraPitch
+        #return deltam
 
     def compile_delta(self, traps):
         for trap in traps:
