@@ -33,8 +33,8 @@ class QAbWidget(QFrame):
             self.ui.Reset.clicked.connect(self.reset)
             
             #optimization
-            self.ui.optimize.clicked.connect(self.optimize.emit())
-            self.ui.unoptimize.clicked.connect(self.unoptimize.emit())
+            self.ui.optimize.clicked.connect(self.optimize)
+            self.ui.unoptimize.clicked.connect(self.unoptimize)
 
     def updateCoefs(self):
         
@@ -75,6 +75,12 @@ class QAbWidget(QFrame):
         self.ui.a7slid.setValue(0)
         self.ui.a8slid.setValue(0)
         self.updateCoefs()
+        
+    def optimize(self):
+        self.optimize.emit()
+        
+    def unoptimize(self):
+        self.unoptimize.emit()
 
 
 if __name__ == '__main__':
