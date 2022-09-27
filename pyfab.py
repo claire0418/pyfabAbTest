@@ -54,7 +54,7 @@ class PyFab(QMainWindow):
         self.aber = QAberration(self, shape=self.slm.shape).start()
         
         #optimization algorithm
-        self.optimization = QOptimize(self).start()
+        self.optimization = QOptimize(self, shape=self.slm.shape).start()
         
 
         # Trapping pattern is an interactive overlay
