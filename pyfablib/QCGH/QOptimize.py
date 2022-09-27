@@ -22,8 +22,12 @@ class QOptimize(CGH):
         self.phi = phi
 
 
-    def calculate_delta(self, xm, ym, zm):
+    def calculate_delta(self, trap):
         '''calculate delta_mj for one trap'''
+	
+        xm = trap[0]
+        ym = trap[1]
+        zm = trap[2]
 
         #SLM pixel coordinates, this might be wrong????
         alpha = np.cos(np.radians(self.phis))
