@@ -66,7 +66,7 @@ class QOptimize(CGH):
         return ((128. / np.pi) * (psi) + 127.).astype(np.uint8)
 
     def optimize(self,traps):
-        iterations = np.arange(0,5)
+        iterations = np.arange(0,3)
         self.recalculate_Vm(self.phi, traps)
         self.compile_delta(traps)
         Vm = np.array(self.Vm)
