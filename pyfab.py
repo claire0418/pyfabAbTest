@@ -130,6 +130,7 @@ class PyFab(QMainWindow):
         # 3. Project result when calculation is complete
         self.cgh.device.sigHologramReady.connect(self.aber.newcompute)
         self.aber.correctionReady.connect(self.slm.setData)
+        self.aber.correctionReady.connect(self.optimization.getPhi)
         self.cgh.device.sigHologramReady.connect(self.slmView.setData)
 
         # Signals associated with GUI controls
