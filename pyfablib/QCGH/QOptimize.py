@@ -25,11 +25,14 @@ class QOptimize(CGH):
     def calculate_delta(self, trap):
         '''calculate delta_mj for one trap'''
 	
+        xm = trap.x
+        ym = trap.y
+        zm = trap.z
 	
         #SLM pixel coordinates, this might be wrong????
-        alpha = np.cos(np.radians(self.phis))
-        x = alpha*(np.arange(self.width) - self.xs)
-        y = np.arange(self.height) - self.ys
+        #alpha = np.cos(np.radians(self.phis))
+        #x = alpha*(np.arange(self.width) - self.xs)
+        #y = np.arange(self.height) - self.ys
 
         deltam = np.zeros((480,640))
         for x in range(0,480):
