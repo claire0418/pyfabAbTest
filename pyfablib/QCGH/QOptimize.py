@@ -4,7 +4,7 @@
 from .CGH import CGH
 import numpy as np
 from PyQt5.QtCore import (pyqtSignal, pyqtSlot)
-from .traps.QTrapGroup import QTrapGroup as group
+from pyfablib.traps.QTrapGroup import QTrapGroup as group
 
 class QOptimize(CGH):
 
