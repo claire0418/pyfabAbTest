@@ -37,15 +37,15 @@ class QOptimize(CGH):
                              + (np.pi*2/(self._wavelength*self._focalLength))*(x*xm + y*ym)*self._slmPitch*self._cameraPitch
         return deltam
 
-    def compile_delta(traps):
+    def compile_delta(self, traps):
         for trap in traps:
-            d = calculate_delta(self, group.trap.r)
+            d = self.calculate_delta(self, group.trap.r)
             self.delta.append(d)
 	
     def recalculate_Vm(self, phase, traps):
         self.Vm.clear()
         for trap in traps:
-            d = calculate_delta(self, group.trap.r) #group.trap.r might not work hnnng
+            d = self.calculate_delta(self, group.trap.r) #group.trap.r might not work hnnng
             v = np.zeros((480,640))
             for x in range(0,480):
                 for y in range(0,640):
