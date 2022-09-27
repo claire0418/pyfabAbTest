@@ -19,55 +19,55 @@ class QOptimize(CGH):
 
 
     def calculate_delta(self, xm, ym, zm):
-	'''calculate delta_mj for one trap'''
+    '''calculate delta_mj for one trap'''
 
-	#SLM pixel coordinates, this might be wrong????
-	alpha = np.cos(np.radians(self.phis))
+        #SLM pixel coordinates, this might be wrong????
+        alpha = np.cos(np.radians(self.phis))
         x = alpha*(np.arange(self.width) - self.xs)
         y = np.arange(self.height) - self.ys
 
-	deltam = np.zeros((480,640))
-	for x in range(0,480):
-		for y in range(0,640):
-			deltam[x][y] = (np.pi*zm/(self._wavelength*self._focalLength**2))*(x**2 + y**2)*(self._slmPitch**2)*self._cameraPitch \
-				     + (np.pi*2/(self._wavelength*self._focalLength))*(x*xm + y*ym)*self._slmPitch*self._cameraPitch
-	return deltam
+        deltam = np.zeros((480,640))
+        for x in range(0,480):
+            for y in range(0,640):
+                deltam[x][y] = (np.pi*zm/(self._wavelength*self._focalLength**2))*(x**2 + y**2)*(self._slmPitch**2)*self._cameraPitch \
+                             + (np.pi*2/(self._wavelength*self._focalLength))*(x*xm + y*ym)*self._slmPitch*self._cameraPitch
+        return deltam
 
     def compile_delta(traps):
 	for trap in traps:
-	    d = calculate_delta(self, group.trap.r)
-	    self.delta.append(d)
+            d = calculate_delta(self, group.trap.r)
+            self.delta.append(d)
 	
     def recalculate_Vm(phase, traps):
-	self.Vm.clear()
-	for trap in traps:
+        self.Vm.clear()
+        for trap in traps:
             d = calculate_delta(self, group.trap.r) #group.trap.r might not work hnnng
-	    v = np.zeros((480,640))
-	    for x in range(0,480):
-		for y in range(0,640):
-		    v[x][y] = (1/307200)*np.exp(1j*(phase[x][y]-d[x][y]))
-	    self.Vm.append(sum(sum(v,[])))
+            v = np.zeros((480,640))
+            for x in range(0,480):
+                for y in range(0,640):
+                    v[x][y] = (1/307200)*np.exp(1j*(phase[x][y]-d[x][y]))
+            self.Vm.append(sum(sum(v,[])))
 
     def Vm_avg():
-	Vm = np.array(self.Vm)
-	return sum(abs(Vm))/len(Vm)
+        Vm = np.array(self.Vm)
+        return sum(abs(Vm))/len(Vm)
 
     def optimize(traps):
 
-	recalculate_Vm(self.phi, traps)
-	compile_delta(traps)
-	Vm = np.array(self.Vm)
-	delta = np.array(self.delta)
+        recalculate_Vm(self.phi, traps)
+        compile_delta(traps)
+        Vm = np.array(self.Vm)
+        delta = np.array(self.delta)
 
-	w = np.ones(len(Vm))
-	phi = np.zeros((480,640))
+        w = np.ones(len(Vm))
+        phi = np.zeros((480,640))
 
-	for k in range(0,5):
-	    for m in range(0,len(Vm)):
-		w[m] = w[m]*(Vm_avg()/abs(Vm[m])
-		for x in range(0,480):
-		    for y in range(0,640):
-			phi[x][y] += np.angle(np.exp(1j*delta[m][x][y]*w[m])*(Vm[m]/abs(Vm[m])))
-	    recalculate_Vm(phi, traps)
+        for k in range(0,5):
+            for m in range(0,len(Vm)):
+                w[m] = w[m]*(Vm_avg()/abs(Vm[m])
+                for x in range(0,480):
+                    for y in range(0,640):
+                        phi[x][y] += np.angle(np.exp(1j*delta[m][x][y]*w[m])*(Vm[m]/abs(Vm[m])))
+            recalculate_Vm(phi, traps)
 				
-	self.recalculate.emit(phi)
+        self.recalculate.emit(phi)
