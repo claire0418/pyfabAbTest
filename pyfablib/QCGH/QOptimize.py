@@ -54,8 +54,8 @@ class QOptimize(CGH):
 
     def optimize(traps):
         iterations = np.arange(0,5)
-        recalculate_Vm(self.phi, traps)
-        compile_delta(traps)
+        self.recalculate_Vm(self.phi, traps)
+        self.compile_delta(traps)
         Vm = np.array(self.Vm)
         delta = np.array(self.delta)
 
@@ -68,6 +68,6 @@ class QOptimize(CGH):
                 for x in range(0,480):
                     for y in range(0,640):
                         phi[x][y] += np.angle(np.exp(1j*delta[m][x][y]*w[m])*(Vm[m]/abs(Vm[m])))
-            recalculate_Vm(phi, traps)
+            self.recalculate_Vm(phi, traps)
 				
         self.recalculate.emit(phi)
