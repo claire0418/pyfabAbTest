@@ -29,9 +29,9 @@ class QOptimize(CGH):
         zm = trap.z
 	
         #SLM pixel coordinates, this might be wrong????
-        alpha = np.cos(np.radians(self.phis))
-        x = alpha*(np.arange(self.width) - self.xs)
-        y = np.arange(self.height) - self.ys
+        #alpha = np.cos(np.radians(self.phis))
+        #x = alpha*(np.arange(self.width) - self.xs)
+        #y = np.arange(self.height) - self.ys
 
         deltam = np.zeros(self.shape)
         for x in range(0,self.shape[0]):
