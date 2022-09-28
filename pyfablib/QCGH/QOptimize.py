@@ -52,7 +52,7 @@ class QOptimize(CGH):
         self.Vm.clear()
         for trap in traps:
             d = self.calculate_delta(trap)
-            v = np.zeros(self.shape)
+            v = np.zeros(self.shape, dtype = 'complex_')
             for x in range(0,self.shape[0]):
                 for y in range(0,self.shape[1]):
                     v[x][y] = (1/307200)*np.exp(1j*(phase[x][y]-d[x][y]))
