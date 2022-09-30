@@ -37,7 +37,7 @@ class QOptimize(CGH):
         for y in range(0,self.shape[0]):
             #alpha = np.cos(np.radians(self.phis))
             #i = alpha*(x - self.xs)
-            j = (-y+self.shape[0]))*self._slmPitch
+            j = (-y+self.shape[0])*self._slmPitch
             for x in range(0,self.shape[1]):
                 #j = y - self.ys
                 i = x*self._slmPitch
