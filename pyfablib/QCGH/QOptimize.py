@@ -35,12 +35,12 @@ class QOptimize(CGH):
 
         deltam = np.zeros(self.shape)
         for x in range(0,self.shape[0]):
-            alpha = np.cos(np.radians(self.phis))
-            i = alpha*(x - self.xs)
+            #alpha = np.cos(np.radians(self.phis))
+            #i = alpha*(x - self.xs)
             for y in range(0,self.shape[1]):
-                j = y - self.ys
-                deltam[x][y] = (np.pi*zm/(self._wavelength*self._focalLength**2))*(i**2 + j**2)*(self._slmPitch**2)*self._cameraPitch \
-                             + (np.pi*2/(self._wavelength*self._focalLength))*(i*xm + j*ym)*self._slmPitch*self._cameraPitch
+                #j = y - self.ys
+                deltam[x][y] = (np.pi*zm/(self._wavelength*self._focalLength**2))*(x**2 + y**2)*(self._slmPitch**2)*self._cameraPitch \
+                             + (np.pi*2/(self._wavelength*self._focalLength))*(x*xm + y*ym)*self._slmPitch*self._cameraPitch
         return deltam
 
     def compile_delta(self, traps):
