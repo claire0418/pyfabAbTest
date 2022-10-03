@@ -56,7 +56,7 @@ class QOptimize(CGH):
             v = np.zeros(self.shape, dtype = 'complex_')
             for x in range(0,self.shape[0]):
                 for y in range(0,self.shape[1]):
-                    v[x][y] = (1/307200)*np.exp(1j*(phase[x][y]-d[x][y]))
+                    v[x][y] = (1/(self.shape[0]*self.shape[1]))*np.exp(1j*(phase[x][y]-d[x][y]))
             self.Vm.append(sum(sum(v)))
 
     def Vm_avg(self):
@@ -66,12 +66,30 @@ class QOptimize(CGH):
     def quantize(self, psi):
         return ((128. / np.pi) * (psi) + 127.).astype(np.uint8)
 
+    def phi_init(delta):
+        phi = np.zeros(self.shape)
+        phi_m = np.zeros(self.shape, dtype = 'complex_')
+        for m in range(0,len(delta)):
+            random = 2*np.pi*np.random.rand()
+            for x in range(0,self.shape[0]):
+                for y in range(0,self.shape[1]):
+                    phi_m[x][y] += np.exp(1j*(delta[x][y]+random))
+        for x in range(0,self.shape[0]):
+            for y in range(0,self.shape[1]):
+                phi[x][y] = np.angle(phi_m[x][y])
+        return phi
+        
+        
+
     def optimize(self,traps):
+	
         iterations = np.arange(0,2)
-        self.recalculate_Vm(self.phi, traps)
+        delta = np.array(self.delta)
+        phi_init = self.phi_init(delta)
+        self.recalculate_Vm(phi_init, traps)
         self.compile_delta(traps)
         Vm = np.array(self.Vm)
-        delta = np.array(self.delta)
+
 
         w = np.ones(len(Vm))
         phi = np.zeros(self.shape)
