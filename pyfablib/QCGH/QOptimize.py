@@ -26,7 +26,7 @@ class QOptimize(CGH):
 	
         xm = trap.x * self._cameraPitch
         ym = trap.y * self._cameraPitch
-        zm = (trap.z + 2*self.focalLength)*self._cameraPitch
+        zm = trap.z * self._cameraPitch #idk what's going on here
 	
         #SLM pixel coordinates, this might be wrong????
         #alpha = np.cos(np.radians(self.phis))
@@ -35,13 +35,11 @@ class QOptimize(CGH):
 
         deltam = np.zeros(self.shape)
         for y in range(0,self.shape[0]):
-            #alpha = np.cos(np.radians(self.phis))
-            #i = alpha*(x - self.xs)
-            j = (-y+self.shape[0])*self._slmPitch
+            j = (-y+self.shape[0]-self.ys)*self._slmPitch
             for x in range(0,self.shape[1]):
-                #j = y - self.ys
-                i = x*self._slmPitch
-                deltam[y][x] = (np.pi*zm/(self._wavelength*self._focalLength**2))*(i**2 + j**2) \
+                alpha = np.cos(np.radians(self.phis))
+                i = (x-self.xs)*alpha*self._slmPitch
+                deltam[y][x] = (np.pi*zm/(self._wavelength*(self._focalLength**2)))*(i**2 + j**2) \
                              + (np.pi*2/(self._wavelength*self._focalLength))*(i*xm + j*ym)
         return deltam
 
@@ -68,7 +66,7 @@ class QOptimize(CGH):
         return ((128. / np.pi) * (psi) + 127.).astype(np.uint8)
 
     def optimize(self,traps):
-        iterations = np.arange(0,3)
+        iterations = np.arange(0,2)
         self.recalculate_Vm(self.phi, traps)
         self.compile_delta(traps)
         Vm = np.array(self.Vm)
