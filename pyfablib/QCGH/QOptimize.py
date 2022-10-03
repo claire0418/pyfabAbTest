@@ -73,7 +73,7 @@ class QOptimize(CGH):
             random = 2*np.pi*np.random.rand()
             for x in range(0,self.shape[0]):
                 for y in range(0,self.shape[1]):
-                    phi_m[x][y] += np.exp(1j*(delta[x][y]+random))
+                    phi_m[x][y] += np.exp(1j*(delta[m][x][y]+random))
         for x in range(0,self.shape[0]):
             for y in range(0,self.shape[1]):
                 phi[x][y] = np.angle(phi_m[x][y])
