@@ -66,7 +66,7 @@ class QOptimize(CGH):
     def quantize(self, psi):
         return ((128. / np.pi) * (psi) + 127.).astype(np.uint8)
 
-    def phi_init(delta):
+    def phi_init(self, delta):
         phi = np.zeros(self.shape)
         phi_m = np.zeros(self.shape, dtype = 'complex_')
         for m in range(0,len(delta)):
