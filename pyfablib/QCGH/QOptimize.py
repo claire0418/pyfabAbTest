@@ -24,8 +24,8 @@ class QOptimize(CGH):
     def calculate_delta(self, trap):
         '''calculate delta_mj for one trap'''
 	
-        xm = (trap.x-self.xc) * self._cameraPitch
-        ym = (trap.y-self.yc) * self._cameraPitch
+        ym = (-(trap.x-self.xc)+1280) * self._cameraPitch
+        xm = (trap.y-self.yc) * self._cameraPitch
         zm = (trap.z-self.zc) * self._cameraPitch #idk what's going on here
 	
         #SLM pixel coordinates, this might be wrong????
@@ -35,8 +35,8 @@ class QOptimize(CGH):
 
         deltam = np.zeros(self.shape)
         for y in range(0,self.shape[0]):
-            #j = (-y+self.shape[0]-self.ys)*self._slmPitch
-            j = (y-self.ys)*self._slmPitch
+            j = (-y+self.shape[0]-self.ys)*self._slmPitch
+            #j = (y-self.ys)*self._slmPitch
             for x in range(0,self.shape[1]):
                 alpha = np.cos(np.radians(self.phis))
                 i = (x-self.xs)*alpha*self._slmPitch
@@ -101,6 +101,6 @@ class QOptimize(CGH):
                     for y in range(0,self.shape[1]):
                         phi[x][y] += np.angle(np.exp(1j*delta[m][x][y]*w[m])*(Vm[m]/abs(Vm[m])))
             self.recalculate_Vm(phi, traps)
-				
-        phi_final = self.quantize(phi)
-        self.recalculate.emit(phi_final)
+            phi_final = self.quantize(phi)
+            self.recalculate.emit(phi_final)	
+
