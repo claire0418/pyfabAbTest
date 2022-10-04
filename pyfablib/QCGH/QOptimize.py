@@ -24,8 +24,8 @@ class QOptimize(CGH):
     def calculate_delta(self, trap):
         '''calculate delta_mj for one trap'''
 	
-        ym = -(trap.x-self.xc) * self._cameraPitch
-        xm = (trap.y-self.yc) * self._cameraPitch
+        xm = (trap.x-self.xc) * self._cameraPitch
+        ym = (trap.y-self.yc) * self._cameraPitch
         zm = (trap.z-self.zc) * self._cameraPitch #idk what's going on here
 	
         #SLM pixel coordinates, this might be wrong????
