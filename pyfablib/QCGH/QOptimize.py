@@ -101,6 +101,7 @@ class QOptimize(CGH):
                     for y in range(0,self.shape[1]):
                         phi[x][y] += np.angle(np.exp(1j*delta[m][x][y]*w[m])*(Vm[m]/abs(Vm[m])))
             self.recalculate_Vm(phi, traps)
+            Vm = np.array(self.Vm)
             phi_final = self.quantize(phi)
             self.recalculate.emit(phi_final)	
 
