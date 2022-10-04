@@ -24,7 +24,7 @@ class QOptimize(CGH):
     def calculate_delta(self, trap):
         '''calculate delta_mj for one trap'''
 	
-        ym = (-(trap.x-self.xc)+1280) * self._cameraPitch
+        ym = -(trap.x-self.xc) * self._cameraPitch
         xm = (trap.y-self.yc) * self._cameraPitch
         zm = (trap.z-self.zc) * self._cameraPitch #idk what's going on here
 	
@@ -35,8 +35,8 @@ class QOptimize(CGH):
 
         deltam = np.zeros(self.shape)
         for y in range(0,self.shape[0]):
-            #j = (-y+self.shape[0]-self.ys)*self._slmPitch
-            j = (y-self.ys)*self._slmPitch
+            j = -(y-self.ys)*self._slmPitch
+            #j = (y-self.ys)*self._slmPitch
             for x in range(0,self.shape[1]):
                 alpha = np.cos(np.radians(self.phis))
                 i = (x-self.xs)*alpha*self._slmPitch
@@ -64,29 +64,13 @@ class QOptimize(CGH):
         return sum(abs(Vm))/len(Vm)
 
     def quantize(self, psi):
-        return ((128. / np.pi) * (psi) + 127.).astype(np.uint8)
-
-    def phi_init(self, delta):
-        phi = np.zeros(self.shape)
-        phi_m = np.zeros(self.shape, dtype = 'complex_')
-        for m in range(0,len(delta)):
-            random = 2*np.pi*np.random.rand()
-            for x in range(0,self.shape[0]):
-                for y in range(0,self.shape[1]):
-                    phi_m[x][y] += np.exp(1j*(delta[m][x][y]+random))
-        for x in range(0,self.shape[0]):
-            for y in range(0,self.shape[1]):
-                phi[x][y] = np.angle(phi_m[x][y])
-        return phi
-        
-        
+        return ((128. / np.pi) * (psi) + 127.).astype(np.uint8)    
 
     def optimize(self,traps):
 	
         iterations = np.arange(0,3)
         self.compile_delta(traps)
         delta = np.array(self.delta)
-        #phi_init = self.phi_init(delta)
         self.recalculate_Vm(self.phi, traps)
         Vm = np.array(self.Vm)
 
