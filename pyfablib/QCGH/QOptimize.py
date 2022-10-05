@@ -26,7 +26,7 @@ class QOptimize(CGH):
 	
         xm = (trap.x-self.xc) * self._cameraPitch
         ym = (trap.y-self.yc) * self._cameraPitch
-        zm = (trap.z-self.zc) * self._cameraPitch #idk what's going on here
+        zm = (trap.z-self.zc) * self._cameraPitch
 	
         #SLM pixel coordinates, this might be wrong????
         #alpha = np.cos(np.radians(self.phis))
@@ -53,10 +53,11 @@ class QOptimize(CGH):
         self.Vm.clear()
         for trap in traps:
             d = self.calculate_delta(trap)
-            v = np.zeros(self.shape, dtype = 'complex_')
-            for x in range(0,self.shape[0]):
-                for y in range(0,self.shape[1]):
-                    v[x][y] = (1/(self.shape[0]*self.shape[1]))*np.exp(1j*(phase[x][y]-d[x][y]))
+            e = np.full(self.shape,np.e)
+            #for x in range(0,self.shape[0]):
+                #for y in range(0,self.shape[1]):
+                    #v[x][y] = (1/(self.shape[0]*self.shape[1]))*np.exp(1j*(phase[x][y]-d[x][y]))
+            v = (1/(self.shape[0]*self.shape[1]))*np.power(e,1j*(phase-d))
             self.Vm.append(sum(sum(v)))
 
     def Vm_avg(self):
@@ -76,14 +77,16 @@ class QOptimize(CGH):
 
 
         w = np.ones(len(Vm))
-        phi = np.zeros(self.shape)
-
+        psi = np.zeros(self.shape, dtype='conplex_')
+        e = np.full(self.shape,np.e) 
+	
         for k in iterations:
             for m in range(0,len(Vm)):
                 w[m] = w[m]*(self.Vm_avg()/abs(Vm[m]))
-                for x in range(0,self.shape[0]):
-                    for y in range(0,self.shape[1]):
-                        phi[x][y] += np.angle(np.exp(1j*delta[m][x][y]*w[m])*(Vm[m]/abs(Vm[m])))
+		#for x in range(0,self.shape[0]):
+                    #for y in range(0,self.shape[1]):
+                psi += np.power(e,1j*delta[m])*w[m]*(Vm[m]/abs(Vm[m]))
+            phi = np.angle(psi)
             self.recalculate_Vm(phi, traps)
             Vm = np.array(self.Vm)
             phi_final = self.quantize(phi)
