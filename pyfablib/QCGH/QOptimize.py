@@ -80,7 +80,7 @@ class QOptimize(CGH):
         psi = np.zeros(self.shape, dtype='complex_')
         e = np.full(self.shape,np.e) 
 	
-        for k in range(0,5):
+        for k in iterations:
             for m in range(0,len(Vm)):
                 w[m] = w[m]*(self.Vm_avg()/abs(Vm[m]))
 		#for x in range(0,self.shape[0]):
