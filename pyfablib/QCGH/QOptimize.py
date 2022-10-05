@@ -77,7 +77,7 @@ class QOptimize(CGH):
 
 
         w = np.ones(len(Vm))
-        psi = np.zeros(self.shape, dtype='conplex_')
+        psi = np.zeros(self.shape, dtype='complex_')
         e = np.full(self.shape,np.e) 
 	
         for k in iterations:
