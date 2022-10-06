@@ -60,7 +60,12 @@ class QOptimize(CGH):
         return sum(abs(Vm))/len(Vm)
 
     def phi_init(self,delta):
-        #make this
+        e = np.full(self.shape,np.e)
+        for m in range(len(delta)):
+            random = np.ones(self.shape)*2*np.pi*np.random.rand()
+            psi += np.power(e,1j*(delta[m]+random)
+        phi = np.angle(psi)
+        return phi
 
     def quantize(self, psi):
         return ((128. / np.pi) * (psi) + 127.).astype(np.uint8)    
@@ -70,7 +75,7 @@ class QOptimize(CGH):
         iterations = np.arange(0,5)
         self.compile_delta(traps)
         delta = np.array(self.delta)
-        self.recalculate_Vm(sum(delta), traps)
+        self.recalculate_Vm(self.phi_init(delta), traps)
         Vm = np.array(self.Vm)
 
 
