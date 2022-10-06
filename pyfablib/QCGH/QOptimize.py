@@ -15,11 +15,6 @@ class QOptimize(CGH):
 
         self.Vm = []
         self.delta = []
-        self.phi = np.zeros(self.shape)
-	
-    def getPhi(self,phi):
-        self.phi = phi
-
 
     def calculate_delta(self, trap):
         '''calculate delta_mj for one trap'''
@@ -64,6 +59,9 @@ class QOptimize(CGH):
         Vm = np.array(self.Vm)
         return sum(abs(Vm))/len(Vm)
 
+    def phi_init(self,delta):
+        #make this
+
     def quantize(self, psi):
         return ((128. / np.pi) * (psi) + 127.).astype(np.uint8)    
 
@@ -89,6 +87,6 @@ class QOptimize(CGH):
             phi = np.angle(psi)
             self.recalculate_Vm(phi, traps)
             Vm = np.array(self.Vm)
-            phi_final = self.quantize(phi)
-            self.recalculate.emit(phi_final)	
+        phi_final = self.quantize(phi)
+        self.recalculate.emit(phi_final)	
 
