@@ -1,5 +1,3 @@
-# intensity optimization algorithm for point trap
-# later: phase stuff and also traps of diff shapes
 
 from .CGH import CGH
 import numpy as np
@@ -19,19 +17,13 @@ class QOptimize(CGH):
     def calculate_delta(self, trap):
         '''calculate delta_mj for one trap'''
 	
-        ym = -(trap.x-self.xc) * self._cameraPitch
-        xm = (trap.y-self.yc) * self._cameraPitch
+        xm = (trap.x-self.xc) * self._cameraPitch
+        ym = (trap.y-self.yc) * self._cameraPitch
         zm = (trap.z-self.zc) * self._cameraPitch
-	
-        #SLM pixel coordinates, this might be wrong????
-        #alpha = np.cos(np.radians(self.phis))
-        #x = alpha*(np.arange(self.width) - self.xs)
-        #y = np.arange(self.height) - self.ys
 
         deltam = np.zeros(self.shape)
         for y in range(0,self.shape[0]):
             j = -(y-self.ys)*self._slmPitch
-            #j = (y-self.ys)*self._slmPitch
             for x in range(0,self.shape[1]):
                 alpha = np.cos(np.radians(self.phis))
                 i = (x-self.xs)*alpha*self._slmPitch
@@ -49,9 +41,6 @@ class QOptimize(CGH):
         for trap in traps:
             d = self.calculate_delta(trap)
             e = np.full(self.shape,np.e)
-            #for x in range(0,self.shape[0]):
-                #for y in range(0,self.shape[1]):
-                    #v[x][y] = (1/(self.shape[0]*self.shape[1]))*np.exp(1j*(phase[x][y]-d[x][y]))
             v = (1/(self.shape[0]*self.shape[1]))*np.power(e,1j*(phase-d))
             self.Vm.append(sum(sum(v)))
 
@@ -73,7 +62,7 @@ class QOptimize(CGH):
 
     def optimize(self,traps):
 	
-        iterations = np.arange(0,1)
+        iterations = np.arange(0,3)
         self.compile_delta(traps)
         delta = np.array(self.delta)
         self.recalculate_Vm(self.phi_init(delta), traps)
@@ -87,8 +76,6 @@ class QOptimize(CGH):
         for k in iterations:
             for m in range(0,len(Vm)):
                 w[m] = w[m]*(self.Vm_avg()/abs(Vm[m]))
-		#for x in range(0,self.shape[0]):
-                    #for y in range(0,self.shape[1]):
                 psi += np.power(e,1j*delta[m])*w[m]*(Vm[m]/abs(Vm[m]))
             phi = np.angle(psi)
             self.recalculate_Vm(phi, traps)
