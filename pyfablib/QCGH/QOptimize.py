@@ -16,10 +16,14 @@ class QOptimize(CGH):
 
     def calculate_delta(self, trap):
         '''calculate delta_mj for one trap'''
+        theta = np.radians(self._thetac)
+        x = (trap.x-self.xc) * self._cameraPitch
+        y = (trap.y-self.yc) * self._cameraPitch
+        z = (trap.z-self.zc) * self._cameraPitch
 	
-        xm = (trap.x-self.xc) * self._cameraPitch
-        ym = (trap.y-self.yc) * self._cameraPitch
-        zm = (trap.z-self.zc) * self._cameraPitch
+        xm = np.cos(theta)*x + np.sin(theta)*y
+        ym = np.cos(theta)*y - np.sin(theta)*x
+        zm = z
 
         deltam = np.zeros(self.shape)
         for y in range(0,self.shape[0]):
