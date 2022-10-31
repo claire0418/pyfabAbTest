@@ -59,10 +59,7 @@ class QOptimize(CGH):
             random = np.ones(self.shape)*2*np.pi*np.random.rand()
             psi += np.power(e,1j*(delta[m]+random))
         phi = np.angle(psi)
-        return phi
-
-    def quantize(self, psi):
-        return ((128. / np.pi) * (psi) + 127.).astype(np.uint8)    
+        return phi  
 
     def optimize(self,traps):
 	
