@@ -56,7 +56,7 @@ class QOptimize(CGH):
         e = np.full(self.shape,np.e)
         psi = np.zeros(self.shape,dtype='complex_')
         for m in range(len(delta)):
-            random = np.ones(self.shape)*2*np.pi*np.random.rand()
+            random = 2*np.pi*np.random.rand(self.shape)
             psi += np.power(e,1j*(delta[m]+random))
         phi = np.angle(psi)
         return phi  
