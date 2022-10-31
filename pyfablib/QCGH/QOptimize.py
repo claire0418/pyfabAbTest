@@ -87,5 +87,5 @@ class QOptimize(CGH):
             Vm = np.array(self.Vm)
         phi_final = self.quantize(phi)
         self.recalculate.emit(phi_final)
-        print(self.delta)
+        print(phi_final)
 
