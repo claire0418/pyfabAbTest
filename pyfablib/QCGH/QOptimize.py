@@ -85,7 +85,7 @@ class QOptimize(CGH):
             phi = np.angle(psi)
             self.recalculate_Vm(phi, traps)
             Vm = np.array(self.Vm)
-        phi_final = self.quantize(phi)
+        phi_final = ((128. / np.pi) * phi + 127.).astype(np.uint8)
         self.recalculate.emit(phi_final)
         print(phi_final)
 
