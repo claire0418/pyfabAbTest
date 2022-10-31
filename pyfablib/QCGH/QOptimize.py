@@ -86,6 +86,5 @@ class QOptimize(CGH):
             Vm = np.array(self.Vm)
         phi_final = self.quantize(phi)
         self.recalculate.emit(phi_final)
-        for trap in traps:
-            print(trap.x,trap.y)
+        print(self.delta)
 
