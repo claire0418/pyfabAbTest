@@ -66,7 +66,7 @@ class QOptimize(CGH):
 
     def optimize(self,traps):
 	
-        iterations = np.arange(0,2)
+        iterations = np.arange(0,5)
         self.compile_delta(traps)
         delta = np.array(self.delta)
         self.recalculate_Vm(self.phi_init(delta), traps)
