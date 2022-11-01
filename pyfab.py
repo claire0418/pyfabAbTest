@@ -123,7 +123,7 @@ class PyFab(QMainWindow):
         # optimization stuff
         self.aberration.optimize.connect(self.pattern.sendTraps)
         self.pattern.optimizeTraps.connect(self.optimization.optimize)
-        self.optimization.recalculate.connect(self.aber.newcompute)
+        self.optimization.calculate.connect(self.aber.newcompute)
         self.aberration.unoptimize.connect(self.pattern.toggleHologram)
         
         
