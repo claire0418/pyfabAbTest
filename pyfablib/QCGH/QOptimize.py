@@ -6,7 +6,7 @@ from pyfablib.traps.QTrapGroup import QTrapGroup as group
 
 class QOptimize(CGH):
 
-    recalculate = pyqtSignal(np.ndarray)
+    calculate = pyqtSignal(np.ndarray)
 
     def __init__(self, *args, **kwargs): 
         super(QOptimize, self).__init__(*args, **kwargs)
@@ -83,6 +83,6 @@ class QOptimize(CGH):
             self.recalculate_Vm(phi, traps)
             Vm = np.array(self.Vm)
         phi_final = ((128. / np.pi) * phi + 127.).astype(np.uint8)
-        self.recalculate.emit(phi_final)
+        self.calculate.emit(phi_final)
         print(self.Vm_avg())
 
