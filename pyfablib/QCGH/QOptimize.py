@@ -23,7 +23,7 @@ class QOptimize(CGH):
         self._wavelength = 0.532
         self._focalLength = 200
         self._thetac = -89.3
-        #self.scaleFactor = 28.22
+        self.scaleFactor = 28.22
         self.magnification = 60
 
     def calculate_delta(self, trap):
