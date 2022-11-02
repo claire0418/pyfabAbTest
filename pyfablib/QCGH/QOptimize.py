@@ -19,13 +19,11 @@ class QOptimize(CGH):
         self.xc = 946
         self.yc = 839
         self.zc = 0
-        self.xs = 434
-        self.ys = 306
         self.phis = 9.8
         self._wavelength = 0.532
         self._focalLength = 200
         self._thetac = -89.3
-        self.scaleFactor = 28.22
+        #self.scaleFactor = 28.22
         self.magnification = 60
 
     def calculate_delta(self, trap):
@@ -41,10 +39,10 @@ class QOptimize(CGH):
 
         deltam = np.zeros(self.shape)
         for y in range(0,self.shape[0]):
-            j = -(y-self.ys)*self._slmPitch
+            j = -(y-self.ys)*self._slmPitch/self.scaleFactor
             for x in range(0,self.shape[1]):
                 alpha = np.cos(np.radians(self.phis))
-                i = (x-self.xs)*alpha*self._slmPitch
+                i = (x-self.xs)*alpha*self._slmPitch/self.scaleFactor
                 deltam[y][x] = (np.pi*zm/(self._wavelength*(self._focalLength**2)))*(i**2 + j**2) \
                              + (np.pi*2/(self._wavelength*self._focalLength))*(i*xm + j*ym)
         return deltam
@@ -101,3 +99,4 @@ class QOptimize(CGH):
         for trap in traps:
             print(self.xs, self.ys)
             print(self.xc, self.yc)
+            print(self.scaleFactor)
