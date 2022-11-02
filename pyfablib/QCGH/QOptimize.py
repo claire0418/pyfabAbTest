@@ -13,6 +13,20 @@ class QOptimize(CGH):
 
         self.Vm = []
         self.delta = []
+	
+        self._cameraPitch = 4.8
+        self._slmPitch = 11.1
+        self.xc = 946
+        self.yc = 306
+        self.zc = 0
+        self.xs = 434
+        self.ys = 306
+        self.phis = 9.8
+        self._wavelength = 0.532
+        self._focalLength = 200
+        self._thetac = -89.3
+        self.scaleFactor = 28.22
+        self.magnification = 60
 
     def calculate_delta(self, trap):
         '''calculate delta_mj for one trap'''
