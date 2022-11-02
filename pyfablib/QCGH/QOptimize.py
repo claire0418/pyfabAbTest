@@ -34,7 +34,6 @@ class QOptimize(CGH):
                 deltam[y][x] = (np.pi*zm/(self._wavelength*(self._focalLength**2)))*(i**2 + j**2) \
                              + (np.pi*2/(self._wavelength*self._focalLength))*(i*xm + j*ym)
         return deltam
-        print(trap.x, trap.y)
 
     def compile_delta(self, traps):
         for trap in traps:
@@ -85,3 +84,5 @@ class QOptimize(CGH):
             Vm = np.array(self.Vm)
         phi_final = ((128. / np.pi) * phi + 127.).astype(np.uint8)
         self.calculate.emit(phi_final)
+        for trap in traps:
+            print(trap.x, trap.y)
