@@ -84,5 +84,4 @@ class QOptimize(CGH):
             Vm = np.array(self.Vm)
         phi_final = ((128. / np.pi) * phi + 127.).astype(np.uint8)
         self.calculate.emit(phi_final)
-        print(self.Vm_avg())
 
