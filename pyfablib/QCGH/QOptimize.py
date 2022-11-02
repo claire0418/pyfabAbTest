@@ -33,8 +33,8 @@ class QOptimize(CGH):
         yi = (trap.y-self.yc) * self._cameraPitch/self.magnification
         zi = (trap.z-self.zc) * self._cameraPitch/self.magnification
 	
-        ym = -(np.cos(theta)*xi - np.sin(theta)*yi)
-        xm = np.cos(theta)*yi + np.sin(theta)*xi
+        xm = np.cos(theta)*xi - np.sin(theta)*yi
+        ym = np.cos(theta)*yi + np.sin(theta)*xi
         zm = zi
 
         deltam = np.zeros(self.shape)
