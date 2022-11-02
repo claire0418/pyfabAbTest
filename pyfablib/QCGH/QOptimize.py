@@ -19,7 +19,7 @@ class QOptimize(CGH):
         theta = np.radians(self._thetac)
         xi = (trap.x-self.xc) * self._cameraPitch/self.magnification
         yi = (trap.y-self.yc) * self._cameraPitch/self.magnification
-        zi = (trap.z-self.zc) * self._cameraPitch
+        zi = (trap.z-self.zc) * self._cameraPitch/self.magnification
 	
         xm = np.cos(theta)*xi - np.sin(theta)*yi
         ym = np.cos(theta)*yi + np.sin(theta)*xi
