@@ -26,7 +26,7 @@ class QOptimize(CGH):
         self._focalLength = 200
         self._thetac = -89.3
         self.scaleFactor = 28.22
-        self.magnification = 60
+        self.magnification = 100
 
     def calculate_delta(self, trap):
         '''calculate delta_mj for one trap'''
