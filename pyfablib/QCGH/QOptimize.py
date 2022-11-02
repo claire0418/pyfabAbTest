@@ -18,6 +18,8 @@ class QOptimize(CGH):
         self._slmPitch = 11.1
         self.xc = 946
         self.yc = 839
+        self.xs = 434
+        self.ys = 306
         self.zc = 0
         self.phis = 9.8
         self._wavelength = 0.532
