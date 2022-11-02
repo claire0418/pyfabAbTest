@@ -85,4 +85,5 @@ class QOptimize(CGH):
         phi_final = ((128. / np.pi) * phi + 127.).astype(np.uint8)
         self.calculate.emit(phi_final)
         for trap in traps:
-            print(trap.x, trap.y)
+            print(self.xs, self.ys)
+            print(self.xc, self.yc)
