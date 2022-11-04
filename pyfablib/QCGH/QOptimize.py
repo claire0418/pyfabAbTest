@@ -71,7 +71,7 @@ class QOptimize(CGH):
         e = np.full(self.shape,np.e)
         psi = np.zeros(self.shape,dtype='complex_')
         for m in range(len(delta)):
-            random = 2*np.pi*np.random.rand(self.shape[0], self.shape[1])
+            random = np.pi*np.random.rand(self.shape[0], self.shape[1])
             psi += np.power(e,1j*(delta[m]+random))
         phi = np.angle(psi)
         return phi  
@@ -79,7 +79,7 @@ class QOptimize(CGH):
     def optimize(self,traps):
 	
         self.delta.clear()
-        iterations = np.arange(0,20)
+        iterations = np.arange(0,5)
         self.compile_delta(traps)
         delta = np.array(self.delta)
         self.recalculate_Vm(self.phi_init(delta), traps)
