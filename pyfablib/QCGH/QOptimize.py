@@ -14,18 +14,18 @@ class QOptimize(CGH):
         self.Vm = []
         self.delta = []
 	
-        self._cameraPitch = 4.8
+        self._cameraPitch = 4.9
         self._slmPitch = 11.1
-        self.xc = 946
-        self.yc = 839
+        self.xc = 949
+        self.yc = 841
         self.xs = 434
         self.ys = 306
         self.zc = 0
-        self.phis = 9.8
+        self.phis = 13.2
         self._wavelength = 0.532
         self._focalLength = 200
-        self._thetac = -89.3
-        self.scaleFactor = 28.22
+        self._thetac = -89
+        self.scaleFactor = 28.54
         self.magnification = 60
         self.refractiveIndex = 1.47
 
