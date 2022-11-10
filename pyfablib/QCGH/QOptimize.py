@@ -89,7 +89,7 @@ class QOptimize(CGH):
         for trap in traps:
             structure.append(trap.structure)
         w = np.ones(len(Vm))
-        psi = np.zeros((self.shape[1], self.shape[0], len(Vm)), dtype='complex_')
+        psi = np.zeros((len(Vm),self.shape[1], self.shape[0]), dtype='complex_')
         e = np.full(self.shape,np.e) 
 	
         for k in iterations:
