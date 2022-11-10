@@ -86,8 +86,10 @@ class QOptimize(CGH):
         Vm = np.array(self.Vm)
 
         structure = []
+        alpha = []
         for trap in traps:
             structure.append(trap.structure)
+            alpha.append(trap.alpha)
         w = np.ones(len(Vm))
         psi = np.zeros((len(Vm),self.shape[0], self.shape[1]), dtype='complex_')
         e = np.full(self.shape,np.e) 
@@ -101,7 +103,7 @@ class QOptimize(CGH):
             Vm = np.array(self.Vm)
         for m in range(0,len(Vm)):
             if structure[m] is not None:
-                psi[m] = psi[m]*structure[m]
+                psi[m] = psi[m]*structure[m]*alpha[m]
         phi = np.angle(sum(psi))
         phi_final = ((128. / np.pi) * phi + 127.).astype(np.uint8)
         self.calculate.emit(phi_final)
