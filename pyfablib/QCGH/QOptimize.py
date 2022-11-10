@@ -103,6 +103,5 @@ class QOptimize(CGH):
             if structure[m] is not None:
                 psi[m] = psi[m]*structure[m]
         phi = np.angle(sum(psi))
-        print(structure)
         phi_final = ((128. / np.pi) * phi + 127.).astype(np.uint8)
         self.calculate.emit(phi_final)
